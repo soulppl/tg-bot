@@ -1,7 +1,11 @@
+import os
+
 from aiogram import executor
 from core.dp import dp
 from core.FSM import register_handlers_client
+from utils.envs import print_envs
 
+print_envs(os)
 register_handlers_client(dp)
 
 if __name__ == '__main__':

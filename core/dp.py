@@ -2,11 +2,15 @@ import logging
 
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+import os
+from dotenv import load_dotenv, find_dotenv
+
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
-API_TOKEN = "6129587666:AAF922W5WGJS1_f-IXxfcz9VlJPs_73t4nE"
+load_dotenv(find_dotenv())
+API_TOKEN = os.getenv("BOT_API_TOKEN")
 
 storage = MemoryStorage()
 bot = Bot(token=API_TOKEN)
