@@ -1,8 +1,8 @@
 import os
 
 from aiogram import executor
-from core.dp import dp
-from core.FSM import register_handlers_client
+from modules.dp import dp
+from modules.FSM import register_handlers_client
 from utils.envs import print_envs
 
 print_envs(os)
