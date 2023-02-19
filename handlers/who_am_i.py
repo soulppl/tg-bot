@@ -46,4 +46,4 @@ async def send_message(message: types.Message, state=FSMContext):
     await message.delete()
     if message.reply_to_message:
         await message.reply_to_message.delete()
-    await Quiz.welcome.set()
+    await Quiz.next()
