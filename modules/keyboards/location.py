@@ -4,7 +4,7 @@ from constants.menu.countries import Countries
 
 inline_keyboard = [
     [
-        InlineKeyboardButton(text=Countries.spain, callback_data=Countries.armenia),
+        InlineKeyboardButton(text=Countries.armenia, callback_data=Countries.armenia),
         InlineKeyboardButton(text=Countries.belorussia, callback_data=Countries.belorussia),
         InlineKeyboardButton(text=Countries.vietnam, callback_data=Countries.vietnam),
 
@@ -25,8 +25,13 @@ inline_keyboard = [
         InlineKeyboardButton(text=Countries.uae, callback_data=Countries.uae),
     ],
     [
+        InlineKeyboardButton(text=Countries.poland, callback_data=Countries.poland),
+        InlineKeyboardButton(text=Countries.portugal, callback_data=Countries.portugal),
+        InlineKeyboardButton(text=Countries.russia, callback_data=Countries.russia),
+    ],
+    [
         InlineKeyboardButton(text=Countries.serbia, callback_data=Countries.serbia),
-        InlineKeyboardButton(text=Countries.tailand, callback_data=Countries.tailand),
+        InlineKeyboardButton(text=Countries.thailand, callback_data=Countries.thailand),
         InlineKeyboardButton(text=Countries.turkey, callback_data=Countries.turkey),
     ],
     [

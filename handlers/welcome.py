@@ -8,7 +8,6 @@ from modules.google_sheet.google_sheet import is_user_authorised, restore_invite
 from modules.quiz import Quiz
 from modules.dp import dp
 from utils.authorization import handled_auth_user
-from utils.user_info import get_welcome_topic_text
 
 
 @dp.message_handler(commands=['start'], state=None)

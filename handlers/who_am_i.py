@@ -5,7 +5,7 @@ from constants.message import MESSAGES
 from modules.dp import dp, bot
 from modules.google_sheet.google_sheet import send_user_info_to_sheets
 from modules.quiz import Quiz
-from utils.envs import get_forum_id, get_user_info_topic_id
+from utils.envs import get_forum_id, get_user_info_topic_id, get_rules_info_link
 from utils.user_info import get_info_google_doc, get_welcome_topic_text
 
 
@@ -18,7 +18,7 @@ async def send_message(message: types.Message, state=FSMContext):
         member_limit=1
     )
     invite_link = invite_link_obj.invite_link
-
+    rules_info_link = get_rules_info_link()
     async with state.proxy() as quiz_responses:
         who_am_i = message.text
         quiz_responses["who_am_i"] = who_am_i
@@ -39,7 +39,8 @@ async def send_message(message: types.Message, state=FSMContext):
 
     await message.answer(
         MESSAGES.invite_link.substitute(
-            invite_link=invite_link
+            invite_link=invite_link,
+            rules_info_link=rules_info_link
         )
     )
 
