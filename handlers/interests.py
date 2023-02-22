@@ -14,20 +14,25 @@ async def keyboard_message_with_skip(call: CallbackQuery, state=FSMContext):
         interests = quiz_responses["interests"]
         if Interests.travels in interests:
             quiz_responses["interests"] = ', '.join(interests)
-            await call.message.edit_text(MESSAGES.are_you_interesting_on_yacht, parse_mode="HTML")
+            message_answer = await call.message.edit_text(MESSAGES.are_you_interesting_on_yacht, parse_mode="HTML")
             await call.message.edit_reply_markup(
                 reply_markup=ikb_menu
             )
+            async with state.proxy() as globalState:
+                globalState["_message"] = message_answer
             await Quiz.travels.set()
         else:
             quiz_responses["interests"] = ', '.join(interests)
             quiz_responses["travels"] = "_"
-            await call.message.answer(
+            message_answer = await call.message.answer(
                 MESSAGES.tell_about_yourself,
                 reply_markup=ForceReply().create(),
                 parse_mode="HTML"
             )
             await call.message.delete()
+            async with state.proxy() as globalState:
+                globalState["_message"] = message_answer
+
             await Quiz.who_am_i.set()
 
 

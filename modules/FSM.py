@@ -1,14 +1,11 @@
 from aiogram import Dispatcher
 
 from handlers import welcome, name, location, interests, who_am_i, travels, default
-from handlers.forum import chat
 from modules.quiz import Quiz
-
-Quiz.welcome.set()
 
 
 def register_handlers_client(dp: Dispatcher):
-    # dp.register_message_handler: chat.chat_handler(state="*")
+    dp.register_message_handler: default.clear_state(command=['restart'], state="*")
     dp.register_message_handler: welcome.send_message
     dp.register_message_handler: name.send_message(state=Quiz.name)
     dp.register_callback_query_handler: location.keyboard_message(state=Quiz.location)

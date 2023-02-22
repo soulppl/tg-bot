@@ -12,8 +12,14 @@ async def keyboard_message(call: CallbackQuery, state=FSMContext):
     async with state.proxy() as quiz_responses:
         location = call.data
         quiz_responses["location"] = location
-    await call.message.edit_text(MESSAGES.what_you_are_interesting, parse_mode="HTML")
+    message_answer = await call.message.edit_text(
+        MESSAGES.what_you_are_interesting,
+        parse_mode="HTML"
+    )
     await call.message.edit_reply_markup(
         reply_markup=ikb_menu
     )
+    async with state.proxy() as globalState:
+        globalState["_message"] = message_answer
+
     await Quiz.next()

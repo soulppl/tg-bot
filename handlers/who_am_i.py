@@ -18,11 +18,11 @@ async def send_message(message: types.Message, state=FSMContext):
         member_limit=1
     )
     invite_link = invite_link_obj.invite_link
-    rules_info_link = get_rules_info_link()
     async with state.proxy() as quiz_responses:
         who_am_i = message.text
         quiz_responses["who_am_i"] = who_am_i
         quiz_responses["invite_link"] = invite_link
+        quiz_responses.pop("_message", None)
 
         quiz_response_values = list(quiz_responses.values())
         user_info = get_info_google_doc(quiz_response_values)
@@ -39,12 +39,11 @@ async def send_message(message: types.Message, state=FSMContext):
 
     await message.answer(
         MESSAGES.invite_link.substitute(
-            invite_link=invite_link,
-            rules_info_link=rules_info_link
+            invite_link=invite_link
         )
     )
 
     await message.delete()
     if message.reply_to_message:
         await message.reply_to_message.delete()
-    await Quiz.next()
+    await state.finish()

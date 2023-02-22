@@ -22,7 +22,7 @@ def get_welcome_topic_text(quiz_response):
         mention = f"tg://user?id={user_id}"
     name = quiz_response["name"]
     location = quiz_response["location"]
-    interests = quiz_response["interests"]
+    interests = '\n'.join(quiz_response["interests"].split(", "))
     who_am_i = quiz_response["who_am_i"]
     return MESSAGES.welcome_topic_text.substitute(
         name=name,
