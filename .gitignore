@@ -130,3 +130,6 @@ dmypy.json
 
 #ide
 .idea
+
+#api key
+google_table_secret.json
