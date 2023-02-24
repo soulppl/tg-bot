@@ -2,7 +2,7 @@ import os
 
 from aiogram import executor
 
-from handlers.native_buttons.command_list import set_default_commands
+from modules.bot_commands.command_list import set_default_commands
 from modules.dp import dp
 from modules.FSM import register_handlers_client
 from utils.envs import print_envs

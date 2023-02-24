@@ -3,7 +3,8 @@ from aiogram.types import Chat
 from constants.message import MESSAGES
 
 
-def get_info_google_doc(quiz_response_values):
+def get_info_google_doc(quiz_responses):
+    quiz_response_values = list(quiz_responses.values())
     chat = Chat.get_current()
     user_id = chat.id
     username = chat.username

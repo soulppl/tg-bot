@@ -5,7 +5,6 @@ from modules.dp import dp
 from modules.quiz import Quiz
 
 
-@dp.callback_query_handler(state=Quiz.travels)
 async def keyboard_message(call: CallbackQuery, state=FSMContext):
     async with state.proxy() as quiz_responses:
         travels = call.data
