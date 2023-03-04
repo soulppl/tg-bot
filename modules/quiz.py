@@ -8,6 +8,6 @@ class Quiz(StatesGroup):
     interests = State()
     travels = State()
     who_am_i = State()
-    send_quiz = State()
-    edit_quiz = State()
+    quiz_send = State()
+    quiz_edit = State()
 

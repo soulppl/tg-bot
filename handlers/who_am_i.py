@@ -4,7 +4,6 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 
 from constants.message import MESSAGES
-from modules.dp import dp
 from modules.keyboards.inline.quiz_preview import ikb_menu
 from modules.quiz import Quiz
 from utils.user_info import get_welcome_topic_text
@@ -21,7 +20,7 @@ async def callback_handler(call: CallbackQuery, state: FSMContext):
 async def send_message(message: types.Message, message_text: str, state: FSMContext):
     async with state.proxy() as quiz_responses:
         if "is_editing" in quiz_responses:
-            print('messge')
+            print('message')
             edited_text = message_text
             edited_field = quiz_responses["editing_field"]
             quiz_responses[edited_field] = edited_text
@@ -45,4 +44,4 @@ async def send_message(message: types.Message, message_text: str, state: FSMCont
     if message.reply_to_message:
         await message.reply_to_message.delete()
     print('set send quiz')
-    await Quiz.send_quiz.set()
+    await Quiz.quiz_send.set()
