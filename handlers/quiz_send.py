@@ -12,15 +12,12 @@ from utils import get_invite_link, send_user_data, clear_user_history
 async def quiz_send(call: CallbackQuery, state: FSMContext):
     invite_link = await get_invite_link(state)
     if call.data == QuizPreview.send_quiz:
-        print('send')
-        print(call.data)
         await call.message.answer(
             MESSAGES.invite_link.substitute(
                 invite_link=invite_link
             )
         )
     else:
-        print('edit')
         message_answer = await call.message.edit_text(
             MESSAGES.choose_edit_step,
             parse_mode="HTML"

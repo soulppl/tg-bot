@@ -5,7 +5,6 @@ from utils import clear_user_history, say_welcome
 
 
 async def restart(message: types.Message, state: FSMContext):
-    print('restart')
     if message.chat.type != 'private':
         return
 

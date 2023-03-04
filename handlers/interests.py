@@ -54,8 +54,6 @@ async def tell_about_yourself(message: types.Message, state: FSMContext):
     )
     await message.delete()
     async with state.proxy() as globalState:
-        print('set global')
-        print(message_answer)
         globalState["_message"] = message_answer
 
     await Quiz.who_am_i.set()

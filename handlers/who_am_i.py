@@ -20,12 +20,10 @@ async def callback_handler(call: CallbackQuery, state: FSMContext):
 async def send_message(message: types.Message, message_text: str, state: FSMContext):
     async with state.proxy() as quiz_responses:
         if "is_editing" in quiz_responses:
-            print('message')
             edited_text = message_text
             edited_field = quiz_responses["editing_field"]
             quiz_responses[edited_field] = edited_text
         else:
-            print('who am i')
             who_am_i = message_text
             quiz_responses["who_am_i"] = who_am_i
         welcome_topic_text = get_welcome_topic_text(quiz_responses)
@@ -43,5 +41,4 @@ async def send_message(message: types.Message, message_text: str, state: FSMCont
     await message.delete()
     if message.reply_to_message:
         await message.reply_to_message.delete()
-    print('set send quiz')
     await Quiz.quiz_send.set()
