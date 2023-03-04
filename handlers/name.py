@@ -18,8 +18,6 @@ async def send_message(message: types.Message, state: FSMContext):
 
 # переиспользуемая функция
 async def ask_location(message: types.Message, state: FSMContext):
-    print('ask location call')
-
     async with state.proxy() as quiz_responses:
         name = quiz_responses["name"]
         message_answer = await message.answer(
@@ -30,8 +28,6 @@ async def ask_location(message: types.Message, state: FSMContext):
         quiz_responses["_message"] = message_answer
         await message.delete()
         if "is_editing" in quiz_responses:
-            print('is editing')
             await Quiz.who_am_i.set()
             return
-        print('not editing')
         await Quiz.next()

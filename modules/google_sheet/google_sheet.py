@@ -25,8 +25,6 @@ service = discovery.build('sheets', 'v4', credentials=credentials)
 
 async def send_user_info_to_sheets(user_info):
     try:
-        print(user_info)
-
         data = {
             'values': [user_info]
         }

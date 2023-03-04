@@ -21,8 +21,6 @@ async def say_welcome(message: types.Message, state: FSMContext):
     async with state.proxy() as globalState:
         globalState["_message"] = message_answer
         if "is_editing" in globalState:
-            print('editing')
             await Quiz.who_am_i.set()
             return
-    print('not editing')
     await Quiz.name.set()

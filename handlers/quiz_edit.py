@@ -7,7 +7,7 @@ from handlers.name import ask_location
 from utils import say_welcome
 
 
-async def edit_quiz(call: CallbackQuery, state: FSMContext):
+async def quiz_edit(call: CallbackQuery, state: FSMContext):
     if call.data == EditQuizSteps.name:
         async with state.proxy() as globalState:
             globalState["is_editing"] = True

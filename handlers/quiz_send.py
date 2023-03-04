@@ -9,18 +9,15 @@ from modules.quiz import Quiz
 from utils import get_invite_link, send_user_data, clear_user_history
 
 
-async def send_quiz(call: CallbackQuery, state: FSMContext):
+async def quiz_send(call: CallbackQuery, state: FSMContext):
     invite_link = await get_invite_link(state)
     if call.data == QuizPreview.send_quiz:
-        print('send')
-        print(call.data)
         await call.message.answer(
             MESSAGES.invite_link.substitute(
                 invite_link=invite_link
             )
         )
     else:
-        print('edit')
         message_answer = await call.message.edit_text(
             MESSAGES.choose_edit_step,
             parse_mode="HTML"
@@ -30,7 +27,7 @@ async def send_quiz(call: CallbackQuery, state: FSMContext):
         )
         async with state.proxy() as globalState:
             globalState["_message"] = message_answer
-        await Quiz.edit_quiz.set()
+        await Quiz.quiz_edit.set()
         return
 
     await send_user_data(state)
