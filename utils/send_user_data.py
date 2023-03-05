@@ -1,7 +1,7 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 
-from modules.dp import bot
+from modules.DP import bot
 from modules.google_sheet.google_sheet import send_user_info_to_sheets
 from utils.envs import get_forum_id, get_user_info_topic_id
 from utils.user_info import get_info_google_doc, get_welcome_topic_text

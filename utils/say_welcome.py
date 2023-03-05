@@ -3,7 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import ForceReply
 
 from constants.message import MESSAGES
-from modules.quiz import Quiz
+from modules.Quiz import Quiz
 from utils.authorization import handled_auth_user
 
 
@@ -21,6 +21,6 @@ async def say_welcome(message: types.Message, state: FSMContext):
     async with state.proxy() as globalState:
         globalState["_message"] = message_answer
         if "is_editing" in globalState:
-            await Quiz.who_am_i.set()
+            await Quiz.preview.set()
             return
-    await Quiz.name.set()
+    await Quiz.location.set()
