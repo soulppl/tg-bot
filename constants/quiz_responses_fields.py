@@ -4,11 +4,12 @@ class ServiceData:
     last_message = 'last_message'
 
 
-class QuizResponses:
+class QuizResponsesFields:
     name = "name"
     location = "location"
     interests = "interests"
     travels = "travels"
     about = "about"
+    invite_link = "invite_link"
     service_data = ServiceData
 
