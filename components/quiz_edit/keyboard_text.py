@@ -1,4 +1,5 @@
 class KeyboardText:
     name = "Имя"
-    location = "Старана пребывания"
-    about = "Факты о себе"
+    location = "Страна проживания"
+    interests = "Интересы в сообществе"
+    about = "Информация о себе"

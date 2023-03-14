@@ -1,5 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from constants.menu.countries import Countries
+from components.location.keyboard_text import Countries
 
 
 inline_keyboard = [

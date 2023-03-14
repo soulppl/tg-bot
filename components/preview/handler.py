@@ -5,8 +5,10 @@ from aiogram.types import CallbackQuery
 
 from constants.message import MESSAGES
 from components.preview.keyboard import ikb_menu
+from constants.quiz_responses import QuizResponses
 from modules.Quiz import Quiz
-from utils.user_info import get_welcome_topic_text
+from utils.clear_user_history import delete_cached_messages, delete_message
+from utils.user_info import get_welcome_topic_text, get_preview_text
 
 
 async def default(message: types.Message, state: FSMContext):
@@ -19,15 +21,21 @@ async def callback(call: CallbackQuery, state: FSMContext):
 
 async def send_message(message: types.Message, message_text: str, state: FSMContext):
     async with state.proxy() as quiz_responses:
-        if "is_editing" in quiz_responses:
+        if (
+                QuizResponses.service_data.is_editing in quiz_responses and
+                quiz_responses[QuizResponses.service_data.editing_field] == QuizResponses.interests
+        ):
+            pass
+        elif (
+                QuizResponses.service_data.is_editing in quiz_responses
+        ):
             edited_text = message_text
-            edited_field = quiz_responses["editing_field"]
+            edited_field = quiz_responses[QuizResponses.service_data.editing_field]
             quiz_responses[edited_field] = edited_text
         else:
-            who_am_i = message_text
-            quiz_responses["who_am_i"] = who_am_i
-        welcome_topic_text = get_welcome_topic_text(quiz_responses)
-        welcome_preview_text = MESSAGES.welcome_topic_text_preview.substitute(welcome_topic_text=welcome_topic_text)
+            about = message_text
+            quiz_responses[QuizResponses.about] = about
+        welcome_preview_text = get_preview_text(quiz_responses)
 
     message_answer = await message.answer(
         text=welcome_preview_text,
@@ -35,10 +43,10 @@ async def send_message(message: types.Message, message_text: str, state: FSMCont
         parse_mode="HTML"
     )
 
-    async with state.proxy() as globalState:
-        globalState["_message"] = message_answer
+    await delete_message(message)
+    await delete_cached_messages(state)
 
-    await message.delete()
-    if message.reply_to_message:
-        await message.reply_to_message.delete()
+    async with state.proxy() as globalState:
+        globalState[QuizResponses.service_data.last_message] = message_answer
+
     await Quiz.edit_or_send.set()

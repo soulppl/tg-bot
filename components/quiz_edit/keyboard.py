@@ -10,6 +10,9 @@ inline_keyboard = [
         InlineKeyboardButton(text=KeyboardText.location, callback_data=KeyboardText.location),
     ],
     [
+        InlineKeyboardButton(text=KeyboardText.interests, callback_data=KeyboardText.interests),
+    ],
+    [
         InlineKeyboardButton(text=KeyboardText.about, callback_data=KeyboardText.about),
     ]
 ]

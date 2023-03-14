@@ -23,6 +23,15 @@ class LocationFilter(Filter):
         return call.data == KeyboardText.location
 
 
+class InterestsFIlter(Filter):
+    print('interests filter')
+
+    key = FiltersNames.interests
+
+    async def check(self, call: types.CallbackQuery):
+        return call.data == KeyboardText.interests
+
+
 class AboutFilter(Filter):
     print('about filter')
 
