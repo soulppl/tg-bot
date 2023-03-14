@@ -16,9 +16,10 @@ async def default(call: CallbackQuery, state: FSMContext):
             )
         else:
             quiz_responses[QuizResponsesFields.interests] = [interests]
+    photo = open('./components/interests/interests.jpg', 'rb')
 
     message_answer = await call.message.answer_photo(
-        photo='https://drive.google.com/file/d/1GJQFFyStPpyswZ8IMP9zeEIIMY9mYdBI/view?usp=sharing',
+        photo=photo,
         caption=MESSAGES.what_you_are_interesting_with_skip,
         reply_markup=ikb_menu,
         parse_mode="HTML",
