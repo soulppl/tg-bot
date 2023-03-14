@@ -14,7 +14,7 @@ scopes = [
     "https://www.googleapis.com/auth/spreadsheets"
 ]
 
-invite_link_idx = 9
+invite_link_idx = 8
 
 range_full_table = "Sheet1!A1:J3000"
 range_id = "Sheet1!B1:B3000"
@@ -25,8 +25,6 @@ service = discovery.build('sheets', 'v4', credentials=credentials)
 
 async def send_user_info_to_sheets(user_info):
     try:
-        print(user_info)
-
         data = {
             'values': [user_info]
         }
