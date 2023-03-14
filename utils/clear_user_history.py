@@ -1,7 +1,7 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 
-from constants.quiz_responses import QuizResponses
+from constants.quiz_responses_fields import QuizResponsesFields
 
 
 async def delete_message(message: types.Message):
@@ -14,10 +14,10 @@ async def delete_message(message: types.Message):
 async def delete_cached_messages(state: FSMContext):
     async with state.proxy() as globalState:
         try:
-            cached_message = globalState[QuizResponses.service_data.last_message]
+            cached_message = globalState[QuizResponsesFields.service_data.last_message]
             await delete_message(cached_message)
         except Exception as inst:
-            globalState[QuizResponses.service_data.last_message] = None
+            globalState[QuizResponsesFields.service_data.last_message] = None
 
 
 async def clear_user_history_and_state(state: FSMContext):
