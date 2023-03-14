@@ -3,7 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery, ForceReply
 from constants.message import MESSAGES
 from components.about.keyboard import ikb_menu as ikb_menu_about_skip
-from constants.quiz_responses import QuizResponses
+from constants.quiz_responses_fields import QuizResponsesFields
 from modules.Quiz import Quiz
 
 
@@ -19,7 +19,7 @@ async def tell_about_yourself(message: types.Message, state: FSMContext):
     )
     await message.delete()
     async with state.proxy() as globalState:
-        globalState[QuizResponses.service_data.last_message] = message_answer
+        globalState[QuizResponsesFields.service_data.last_message] = message_answer
 
     await Quiz.preview.set()
 

@@ -3,7 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import ForceReply
 
 from constants.message import MESSAGES
-from constants.quiz_responses import QuizResponses
+from constants.quiz_responses_fields import QuizResponsesFields
 from modules.Quiz import Quiz
 from utils.authorization import handled_auth_user
 from utils.clear_user_history import delete_message, delete_cached_messages
@@ -27,7 +27,7 @@ async def say_welcome(message: types.Message, state: FSMContext):
     await delete_cached_messages(state)
 
     async with state.proxy() as globalState:
-        globalState[QuizResponses.service_data.last_message] = message_answer
+        globalState[QuizResponsesFields.service_data.last_message] = message_answer
         if "is_editing" in globalState:
             await Quiz.preview.set()
             return
