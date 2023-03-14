@@ -1,0 +1,2 @@
+class CommandsNames:
+    start = 'start'

@@ -3,7 +3,7 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 
 from constants.message import MESSAGES
-from modules.dp import bot
+from modules.DP import bot
 from modules.google_sheet.google_sheet import is_user_authorised, restore_invite_link
 from utils.envs import get_rules_info_link, get_auth_user_message_timeout, get_forum_id
 
