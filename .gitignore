@@ -133,3 +133,4 @@ dmypy.json
 
 #api key
 google_table_secret.json
+/my_account.session

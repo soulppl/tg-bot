@@ -11,4 +11,6 @@ class Quiz(StatesGroup):
     editing = State()
     editing_interests = State()
     editing_interests_with_skip = State()
+    referral = State()
+
 
