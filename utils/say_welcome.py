@@ -7,6 +7,7 @@ from constants.quiz_responses_fields import QuizResponsesFields
 from modules.Quiz import Quiz
 from utils.authorization import handled_auth_user
 from utils.clear_user_history import delete_message, delete_cached_messages
+from utils.referral import get_referral
 
 
 async def say_welcome(message: types.Message, state: FSMContext):
@@ -14,7 +15,9 @@ async def say_welcome(message: types.Message, state: FSMContext):
     if user_exists:
         return
 
-    photo = open('./components/commands/start/name.jpg', 'rb')
+    referral = get_referral(message)
+
+    photo = open('./projects/user_quiz/components/commands/start/name.jpg', 'rb')
 
     message_answer = await message.answer_photo(
         photo=photo,
@@ -27,8 +30,9 @@ async def say_welcome(message: types.Message, state: FSMContext):
     await delete_cached_messages(state)
 
     async with state.proxy() as globalState:
+        globalState[QuizResponsesFields.referral.referral_nickname] = referral
         globalState[QuizResponsesFields.service_data.last_message] = message_answer
-        if "is_editing" in globalState:
+        if QuizResponsesFields.service_data.is_editing in globalState:
             await Quiz.preview.set()
             return
     await Quiz.location.set()
