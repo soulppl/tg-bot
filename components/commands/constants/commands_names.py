@@ -1,2 +1,0 @@
-class CommandsNames:
-    start = 'start'

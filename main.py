@@ -2,7 +2,7 @@ import os
 
 from aiogram import executor
 
-from components import quiz_send, quiz_edit, quiz_editing
+from projects.user_quiz.components import quiz_edit, quiz_send, quiz_editing
 from modules.DP import dp
 from modules.FSM import register_handlers_client
 from utils.envs import print_envs
