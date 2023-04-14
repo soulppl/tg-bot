@@ -1,5 +1,6 @@
 from aiogram import Dispatcher
 
+from projects import chat_member
 from projects.user_quiz.components import preview, location, interests, quiz_send, default, commands, \
     interests_with_skip, quiz_editing
 from projects.user_quiz.components import quiz_edit, about
@@ -8,6 +9,11 @@ from modules.Quiz import Quiz
 
 # noinspection DuplicatedCode
 def register_handlers_client(dp: Dispatcher):
+    # chat member
+    dp.register_chat_member_handler(
+        chat_member.handler.default
+    )
+
     # referral program
     # default menu
     dp.register_message_handler(

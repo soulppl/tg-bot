@@ -17,4 +17,4 @@ if __name__ == '__main__':
     dp.bind_filter(quiz_editing.LocationFilter)
     dp.bind_filter(quiz_editing.InterestsFIlter)
     dp.bind_filter(quiz_editing.AboutFilter)
-    executor.start_polling(dp, skip_updates=True)
+    executor.start_polling(dp, allowed_updates=["chat_member", "message", "callback_query"])

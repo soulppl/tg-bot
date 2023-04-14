@@ -26,6 +26,8 @@ google_table_secret_abs_path = os.path.expanduser(GOOGLE_TABLE_SECRET_FILE_PATH)
 credentials = service_account.Credentials.from_service_account_file(google_table_secret_abs_path, scopes=scopes)
 service = discovery.build('sheets', 'v4', credentials=credentials)
 
+gsheet_shift = 2
+
 
 async def send_user_quiz_to_sheets(user_info):
     try:
@@ -143,6 +145,19 @@ def set_last_referral_message_id(message_id: list[int], user_idx: str):
             body=data,
             range=range_last_message_id,
             valueInputOption='USER_ENTERED'
+        ).execute()
+
+    except OSError as e:
+        print(e)
+
+
+def delete_user(user_idx: int):
+    try:
+        range_user_to_delete = f'Users!{user_idx}:{user_idx}'
+
+        service.spreadsheets().values().clear(
+            spreadsheetId=SPREADSHEET_ID,
+            range=range_user_to_delete,
         ).execute()
 
     except OSError as e:
