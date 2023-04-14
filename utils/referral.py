@@ -53,7 +53,6 @@ def get_referral_list(message: types.Message, state: FSMContext):
 
 
 def set_last_message_id(message: types.Message, state: FSMContext):
-    gsheet_shift = 2
     user_idx = get_user_idx(message.chat.id)
-    user_real_idx = user_idx + gsheet_shift
-    google_sheet.set_last_referral_message_id([message.message_id], user_real_idx)
+    user_idx_with_shift = user_idx + google_sheet.gsheet_shift
+    google_sheet.set_last_referral_message_id([message.message_id], user_idx_with_shift)

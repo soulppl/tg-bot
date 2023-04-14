@@ -89,7 +89,7 @@ class MESSAGES:
     referral_menu = Template(
         "Рады приветствовать тебя в реферальной программе SOUL 🥳\n\n"
         "Твоя реферальная ссылка:\n"
-        "$referral_link\n\n"
+        "<code>$referral_link</code>\n\n"
     )
     referral_user_list = Template(
         "Число зарегестрированных от тебя участников: <b>$referees_number</b>\n\n"
